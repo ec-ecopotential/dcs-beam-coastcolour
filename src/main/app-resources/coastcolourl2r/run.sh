@@ -32,16 +32,22 @@ format="`ciop-getparam format`"
 
 [ "$format" != "BEAM-DIMAP" ] && [ "$format" != "GeoTIFF" ] && exit $ERR_FORMAT
 
-aerosolType="`ciop-getparam aerosolType`"
-bandNames="`ciop-getparam bandNames`"
-invalidPixel="`ciop-getparam invalidPixel`"
-maskExpression="`ciop-getparam maskExpression`"
-surfPress="`ciop-getparam surfPress`"
-tauAero550="`ciop-getparam tauAero550`"
-uH2o="`ciop-getparam uH2o`"
-uO3="`ciop-getparam uO3`"
-useMerisADS="`ciop-getparam useMerisADS`"
-
+averageSalinity="`ciop-getparam averageSalinity`"
+averageTemperature="`ciop-getparam averageTemperature`"
+ccCloudBufferWidth="`ciop-getparam ccCloudBufferWidth`"
+ccCloudScreeningAmbiguous="`ciop-getparam ccCloudScreeningAmbiguous`"
+ccCloudScreeningSure="`ciop-getparam ccCloudScreeningSure`"
+ccIgnoreSeaIceClimatology="`ciop-getparam ccIgnoreSeaIceClimatology`"
+ccOutputCloudProbabilityFeatureValue="`ciop-getparam ccOutputCloudProbabilityFeatureValue`"
+cloudIceExpression="`ciop-getparam cloudIceExpression`"
+doCalibration="`ciop-getparam doCalibration`"
+doEqualization="`ciop-getparam doEqualization`"
+doSmile="`ciop-getparam doSmile`"
+landExpression="`ciop-getparam landExpression`"
+outputL2RReflecAs="`ciop-getparam outputL2RReflecAs`"
+outputL2RToa="`ciop-getparam outputL2RToa`"
+useExtremeCaseMode="`ciop-getparam useExtremeCaseMode`"
+useSnTMap="`ciop-getparam useSnTMap`"
 
 # loop and process all MERIS products
 while read inputfile 
@@ -60,20 +66,27 @@ do
 	
 outputname=`basename $retrieved`
   
-  $_CIOP_APPLICATION_PATH/shared/bin/gpt.sh SmacOp \
-    -SsourceProduct=$retrieved \
+  $_CIOP_APPLICATION_PATH/shared/bin/gpt.sh CoastColour.L2R \
+    -SccL1P=$retrieved \
     -f $format \
     -t $OUTPUTDIR/$outputname \
-    -PaerosolType=$aerosolType \
-    -PbandNames="$bandNames" \
-    -PinvalidPixel=$invalidPixel \
-    -PmaskExpression="$maskExpression" \
-    -PsurfPress=$surfPress \
-    -PtauAero550=$tauAero550 \
-    -PuH2o=$uH2o \
-    -PuO3=$uO3 \
-    -PuseMerisADS=$useMerisADS 
-  
+    -PaverageSalinity="$averageSalinity" \
+    -PaverageTemperature="$averageTemperature" \
+    -PccCloudBufferWidth="$ccCloudBufferWidth" \
+    -PccCloudScreeningAmbiguous="$ccCloudScreeningAmbiguous" \
+    -PccCloudScreeningSure="$ccCloudScreeningSure" \
+    -PccIgnoreSeaIceClimatology="$ccIgnoreSeaIceClimatology" \
+    -PccOutputCloudProbabilityFeatureValue="$ccOutputCloudProbabilityFeatureValue" \
+    -PcloudIceExpression="$cloudIceExpression" \
+    -PdoCalibration="$doCalibration" \
+    -PdoEqualization="$doEqualization" \
+    -PdoSmile="$doSmile" \
+    -PlandExpression="$landExpression" \
+    -PoutputL2RReflecAs="$outputL2RReflecAs" \
+    -PoutputL2RToa="$outputL2RToa" \
+    -PuseExtremeCaseMode="$useExtremeCaseMode" \
+    -PuseSnTMap="$useSnTMap" 
+    
   res=$?
   [ $res != 0 ] && exit $ERR_BEAM
   
