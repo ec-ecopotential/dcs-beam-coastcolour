@@ -26,9 +26,34 @@ Used in Cluster mode (a set of master and slave nodes), it supports the deployme
 
 #### Pre-requisites
 
-**Installing OTB and other dependencies**
+Log on the developer sandbox and run these commands in a shell:
 
-TBW
+* Install **Java 7**
+
+```bash
+sudo yum install -y java-1.7.0-openjdk
+```
+
+* Select Java 7
+
+```bash
+sudo /usr/sbin/alternatives --config java
+```
+This will show on the terminal window:
+
+```
+There are 3 programs which provide 'java'.
+
+  Selection    Command
+-----------------------------------------------
+ + 1           /usr/java/jdk1.6.0_35/jre/bin/java
+   2           /usr/lib/jvm/jre-1.5.0-gcj/bin/java
+*  3           /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java
+
+Enter to keep the current selection[+], or type selection number:
+```
+
+Select java 1.7 out of the menu options by typing the correct number (here it's *3*).
 
 ##### Using the releases
 
@@ -63,19 +88,20 @@ To submit the application with its default parameters, run the command below in 
 ```bash
 ciop-run
 ```
-Or invoke the Web Processing Service via the Sandbox dashboard providing the catalogue references to the Landat 8 data to process.
+Or invoke the Web Processing Service via the Sandbox dashboard providing the start & end date/time of the Time of Interest and the bounding box of the Area of Interest.
 
 ### <a name="community"></a>Community and Documentation
 
 To learn more and find information go to 
 
 * [Developer Cloud Sandbox](http://docs.terradue.com/developer)  
-
-TBW
+* [ESA Coast Colour project](http://www.coastcolour.org/)
+* [BEAM Toolbox](http://www.brockmann-consult.de/cms/web/beam/)
 
 ### <a name="authors"></a>Authors (alphabetically)
 
 * Brito Fabrice
+* D'Andria Fabio
 * Rossi Cesare
 
 ### <a name="questions"></a>Questions, bugs, and suggestions
@@ -90,6 +116,6 @@ Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/L
 
 ### <a name="funding"></a>Funding
 
-This processing service is an evolution of the [Ocean colour atmospheric correction data challenge](https://github.com/ocean-color-ac-challenge) 
+This processing service is an evolution of the [Ocean colour atmospheric correction data challenge](https://github.com/ocean-color-ac-challenge) applications
 
 The ECOPOTENTIAL project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 641762
