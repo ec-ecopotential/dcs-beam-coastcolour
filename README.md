@@ -1,66 +1,95 @@
-beam-meris-ac
-=============
+## Developer Cloud Sandbox for coast colour processing of MERIS Full Resolution with BEAM 
 
-MERIS atmospheric correction effects using BEAM - using SmacOp
+TBW
 
-### Installation 
+## Quick link
+ 
+* [Getting Started](#getting-started)
+* [Installation](#installation)
+* [Submitting the workflow](#submit)
+* [Community and Documentation](#community)
+* [Authors](#authors)
+* [Questions, bugs, and suggestions](#questions)
+* [License](#license)
+* [Funding](#funding)
 
-Log on the developer sandbox and run these commands in a shell:
+### <a name="getting-started"></a>Getting Started 
 
-* Install **Java 7**
+To run this application you will need a Developer Cloud Sandbox that can be requested at support (at) terradue.com
+
+A Developer Cloud Sandbox provides Earth Sciences data access services, and helper tools for a user to implement, test and validate a scalable data processing application. It offers a dedicated virtual machine and a Cloud Computing environment.
+The virtual machine runs in two different lifecycle modes: Sandbox mode and Cluster mode. 
+Used in Sandbox mode (single virtual machine), it supports cluster simulation and user assistance functions in building the distributed application.
+Used in Cluster mode (a set of master and slave nodes), it supports the deployment and execution of the application with the power of distributed computing for data processing over large datasets (leveraging the Hadoop Streaming MapReduce technology). 
+
+### <a name="installation"></a>Installation
+
+#### Pre-requisites
+
+**Installing OTB and other dependencies**
+
+TBW
+
+##### Using the releases
+
+Log on the Developer Cloud Sandbox.
+
+Download the rpm package from https://github.com/ec-ecopotential/dcs-beam-coastcolour/releases.
+
+Install the downloaded package by running these commands in a shell:
 
 ```bash
-sudo yum install -y java-1.7.0-openjdk
+sudo yum -y install dcs-beam-coastcolour-<version>.x86_64.rpm
 ```
 
-* Select Java 7
+> At this stage there are no releases yet
+
+#### Using the development version
+
+Install the pre-requisites as instructed above.
+
+Log on the Developer Cloud Sandbox and run these commands in a shell:
 
 ```bash
-sudo /usr/sbin/alternatives --config java
-```
-This will show on the terminal window:
-
-```
-There are 3 programs which provide 'java'.
-
-  Selection    Command
------------------------------------------------
- + 1           /usr/java/jdk1.6.0_35/jre/bin/java
-   2           /usr/lib/jvm/jre-1.5.0-gcj/bin/java
-*  3           /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java
-
-Enter to keep the current selection[+], or type selection number:
-```
-
-Select java 1.7 out of the menu options by typing the correct number (here it's *3*).
-
-* Install this application
-
-```bash
-cd
-git clone git@github.com:ocean-color-ac-challenge/beam-meris-ac.git
-cd beam-meris-ac
+git clone git@github.com:ec-ecopotential/dcs-beam-coastcolour.git
+cd dcs-beam-coastcolour
 mvn install
 ```
 
-### Submitting the workflow
+### <a name="submit"></a>Submitting the workflow
 
-* Via the Sandbox shell 
-
-Run this command in a shell:
+To submit the application with its default parameters, run the command below in the Developer Cloud Sandbox shell:
 
 ```bash
-ciop-simwf
+ciop-run
 ```
+Or invoke the Web Processing Service via the Sandbox dashboard providing the catalogue references to the Landat 8 data to process.
 
-* Via the Web Processing Service dashboard tab
+### <a name="community"></a>Community and Documentation
 
-Use your browser to go to the Sandbox dashboard tab at the address http://<sandbox ip>/dashboard
+To learn more and find information go to 
 
-Click on the _Invoke_ tab
+* [Developer Cloud Sandbox](http://docs.terradue.com/developer)  
 
-Below the "Process List" click on _BEAM Atmos Correction_
+TBW
 
-Fill the parameters and click submit. 
+### <a name="authors"></a>Authors (alphabetically)
 
+* Brito Fabrice
+* Rossi Cesare
 
+### <a name="questions"></a>Questions, bugs, and suggestions
+
+Please file any bugs or questions as [issues](https://github.com/ec-ecopotential/dcs-beam-coastcolour/issues/new) or send in a pull request if you corrected any.
+
+### <a name="license"></a>License
+
+Copyright 2016 Terradue Srl
+
+Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
+
+### <a name="funding"></a>Funding
+
+This processing service is an evolution of the [Ocean colour atmospheric correction data challenge](https://github.com/ocean-color-ac-challenge) 
+
+The ECOPOTENTIAL project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 641762
