@@ -14,7 +14,7 @@ fi
 . "$BEAM4_HOME/bin/detect_java.sh"
 
 "$app_java_home/bin/java" \
-    -Xmx1024m \
+    -Xmx4096m \
     -Dceres.context=beam \
     "-Dbeam.mainClass=org.esa.beam.framework.gpf.main.GPT" \
     "-Dbeam.home=$BEAM4_HOME" \
