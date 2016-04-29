@@ -4,7 +4,7 @@
     <jobTemplate id="CoastColourL2r">
       <streamingExecutable>/application/coastcolourl2r/run.sh</streamingExecutable>
       <defaultParameters>						
-        <parameter id="format" title="Save as" abstract="Select the target product format" scope="runtime">
+        <parameter id="format" title="Save as" abstract="Select the target product format" scope="runtime" maxOccurs="1">
         <options>
           <option>BEAM-DIMAP</option>
           <option>GeoTIFF</option>
@@ -13,11 +13,29 @@
     </parameter>
 	<parameter id="startdate" title="Start date" abstract="Start date of the TOI. Used as queryable for the MERIS Level 1 catalogue" scope="runtime" type="opensearch" target="time:start" maxOccurs="1">2011-12-31T09:45:00</parameter>
         <parameter id="enddate" title="End date" abstract="End date of the TOI. Used as queryable for the MERIS Level 1 catalogue" scope="runtime" type="opensearch" target="time:end" maxOccurs="1">2011-12-31T23:59:59</parameter>
-        <parameter id="bbox" title="End date" abstract="End date of the TOI. Used as queryable for the MERIS Level 1 catalogue" scope="runtime" type="opensearch" target="geo:box">7,43,8,44</parameter>
-        <parameter id="doCalibration" title="Perform re-calibration" abstract="Applies correction from MERIS 2nd to 3rd reprocessing quality. Default value is 'false'." scope="runtime" maxOccurs="1">true</parameter>
-        <parameter id="doEqualization" title="Perform equalization" abstract="Perform removal of detector-to-detector systematic radiometric differences in MERIS L1b data products. Default value is 'true'." scope="runtime" maxOccurs="1">true</parameter>
+        <parameter id="bbox" title="Bounding box" abstract="Bounding box expressed in degrees as xmin,ymin,xmax,ymax" scope="runtime" type="opensearch" target="geo:box" maxOccurs="1">5.59,42.26,17.81,48.28</parameter>
+        <parameter id="doCalibration" title="Perform re-calibration" abstract="Applies correction from MERIS 2nd to 3rd reprocessing quality. Default value is 'false'." scope="runtime" maxOccurs="1">
+<options>
+            <option>true</option>
+            <option>false</option>
+            <default>false</default>
+          </options>
+</parameter>
+        <parameter id="doEqualization" title="Perform equalization" abstract="Perform removal of detector-to-detector systematic radiometric differences in MERIS L1b data products. Default value is 'true'." scope="runtime" maxOccurs="1">
+<options>
+            <option>true</option>
+            <option>false</option>
+            <default>true</default>
+          </options>
+</parameter>
         <parameter id="doSmile" title="Perform Smile-effect correction" abstract="Whether to perform MERIS Smile-effect correction. Default value is 'true'." scope="runtime" maxOccurs="1">true</parameter>
-        <parameter id="ccIgnoreSeaIceClimatology" title="Check for sea/lake ice also outside Sea Ice Climatology area" abstract="Check for sea/lake ice also outside Sea Ice Climatology area. Default value is 'false'." scope="runtime" maxOccurs="1">false</parameter>
+        <parameter id="ccIgnoreSeaIceClimatology" title="Check for sea/lake ice also outside Sea Ice Climatology area" abstract="Check for sea/lake ice also outside Sea Ice Climatology area. Default value is 'false'." scope="runtime" maxOccurs="1">
+<options>
+            <option>true</option>
+            <option>false</option>
+            <default>false</default>
+          </options>
+</parameter>
         <parameter id="ccCloudBufferWidth" title="Width of cloud buffer (# of pixels)" abstract="The width of a cloud 'safety buffer' around a pixel which was classified as cloudy. Valid interval is [0,100]. Default value is '2'." scope="runtime" maxOccurs="1">2</parameter> 
         <parameter id="ccCloudScreeningAmbiguous" title="Cloud screening 'ambiguous' threshold" abstract=" Threshold of Cloud Probability Feature Value above which cloud is regarded as still ambiguous (i.e. a higher value results in fewer ambiguous clouds). Default value is '1.4'." scope="runtime" maxOccurs="1">1.4</parameter>
         <parameter id="ccCloudScreeningSure" title="Cloud screening 'sure' threshold" abstract="Threshold of Cloud Probability Feature Value above which cloud is regarded as sure (i.e. a higher value results in fewer sure clouds). Default value is '1.8'." scope="runtime" maxOccurs="1">1.8</parameter>
@@ -25,7 +43,6 @@
         <parameter id="averageTemperature" title="Average Temperature (C)" abstract="If no climatology is used, the average temperature of the water in the region to be processed is taken. Default value is '15'. Parameter unit is 'C'" scope="runtime" maxOccurs="1">15</parameter>
         <parameter id="ccIgnoreSeaIceClimatology" title="Check for sea/lake ice also outside Sea Ice Climatology area" abstract="Check for sea/lake ice also outside Sea Ice Climatology area. Default value is 'false'." scope="runtime" maxOccurs="1">false</parameter>
         <parameter id="ccOutputCloudProbabilityFeatureValue" title="Write Cloud Probability Feature Value to the target product" abstract="Write Cloud Probability Feature Value to the target product. Default value is 'false'." scope="runtime" maxOccurs="1">false</parameter>
-        </parameter>
       	<parameter id="useExtremeCaseMode" title="useExtremeCaseMode" abstract="If selected a neural network for maximum range of concentrations and IOPs is used. If deselected a neural net with limited ranges but less noisy for low concentration ranges is used." scope="runtime" maxOccurs="1">true</parameter>
       	<parameter id="useSnTMap" title="Use climatology map for salinity and temperature" abstract="By default a climatology map is used. If set to 'false' the specified average values are used for the whole scene. Default value is 'true'." scope="runtime" maxOccurs="1">
       	<options>
@@ -42,7 +59,8 @@
             <option>true</option>
             <default>false</default>
           </options>	
-        <parameter id="outputL2RReflecAs" title="Write TOA reflectances to the target product as" abstract="Select if all output reflectances shall be written as radiances or irradiances. The irradiances ( = radiances multiplied by PI) are compatible with the standard MERIS product." scope="runtime">
+          </parameter>
+          <parameter id="outputL2RReflecAs" title="Write TOA reflectances to the target product as" abstract="Select if all output reflectances shall be written as radiances or irradiances. The irradiances ( = radiances multiplied by PI) are compatible with the standard MERIS product." scope="runtime" maxOccurs="1">
           <options>
             <option>RADIANCE_REFLECTANCES</option>
             <option>IRRADIANCE_REFLECTANCES</option>
